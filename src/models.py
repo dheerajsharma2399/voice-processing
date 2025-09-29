@@ -84,3 +84,36 @@ class VoiceClassifier:
     def predict_speaker(self, X: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         """Predict speakers"""
         if not self.is_trained:
+            raise ValueError("Model not trained")
+
+        X_scaled = self.scaler.transform(X)
+        predictions = self.speaker_model.predict(X_scaled)
+        probabilities = self.speaker_model.predict_proba(X_scaled)
+
+        return predictions, probabilities
+
+    def save(self, path: str):
+        """Save model to path""" 
+        if not self.is_trained:
+            raise ValueError("Cannot save an untrained model.")
+        
+        joblib.dump({
+            'scaler': self.scaler,
+            'emotion_model': self.emotion_model,
+            'speaker_model': self.speaker_model
+        }, path)
+        logger.info(f"Model saved to {path}")
+
+    @classmethod
+    def load(cls, path: str) -> 'VoiceClassifier':
+        """Load model from path"""
+        data = joblib.load(path)
+        
+        model = cls()
+        model.scaler = data['scaler']
+        model.emotion_model = data['emotion_model']
+        model.speaker_model = data['speaker_model']
+        model.is_trained = True
+        
+        logger.info(f"Model loaded from {path}")
+        return model

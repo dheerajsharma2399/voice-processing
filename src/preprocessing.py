@@ -3,7 +3,7 @@
 import librosa
 import numpy as np
 from scipy import signal
-from typing import Tuple, Optional
+from typing import List, Tuple, Optional
 import logging
 
 logger = logging.getLogger(__name__)
