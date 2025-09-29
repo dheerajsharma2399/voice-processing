@@ -1,0 +1,60 @@
+# 🚀 Voice ML Project - Setup & Deployment Guide
+
+## 📋 Quick Start Checklist
+
+### Prerequisites
+- [ ] Python 3.8+ installed
+- [ ] Git installed
+- [ ] 4GB+ RAM available
+- [ ] 2GB+ free disk space
+
+### 1. Environment Setup
+```bash
+# Clone or create project directory
+mkdir voice_ml_project
+cd voice_ml_project
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 2. Download Datasets
+
+#### Option A: RAVDESS (Recommended for beginners)
+```bash
+# Create data directory
+mkdir -p data/raw/RAVDESS
+
+# Download from: https://www.kaggle.com/uwrfkaggle/ravdess-emotional-speech-audio
+# Extract to: data/raw/RAVDESS/
+```
+
+#### Option B: UrbanSound8K
+```bash
+# Create data directory  
+mkdir -p data/raw/UrbanSound8K
+
+# Download from: https://urbansounddataset.weill.cornell.edu/urbansound8k.html
+# Extract to: data/raw/UrbanSound8K/
+```
+
+#### Option C: Mozilla Common Voice
+```bash
+# Download from: https://commonvoice.mozilla.org/en/datasets
+# Extract to: data/raw/CommonVoice/
+```
+
+### 3. Project Structure Creation
+```bash
+# Create all necessary directories
+mkdir -p {data/{raw,processed,features},models/{classical,deep_learning,saved_models},notebooks,src,api,streamlit_app}
+
+# Create empty __init__.py files
+touch src/__init__.py api/__init__.py streamlit_app/__init__.py
+```
+
+## 🔧 Development
